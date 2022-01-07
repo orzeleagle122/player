@@ -1,11 +1,27 @@
-import React from 'react';
-import {Container} from "./Navbar.elements";
+import React, {useState} from 'react';
+import {Container, Wrapper} from "./Navbar.elements";
 
 const Navbar = () => {
+
+    const [navbar,setNavbar]=useState(false);
+
+    const handleChangeBackground=()=>{
+        if(window.scrollY>=70){
+            setNavbar(true);
+        }else{
+            setNavbar(false);
+        }
+    }
+    window.addEventListener('scroll',handleChangeBackground);
+
     return (
-        <div>
-            navbar
-        </div>
+        <Container isTransparent={navbar}>
+            <Wrapper>
+                <img src={`https://www.bsgroup.eu/wp-content/uploads/BSG-Logo-Inline-Biale-Litery-1.svg`} alt={`logo`}/>
+                <div>menu</div>
+                <div>account</div>
+            </Wrapper>
+        </Container>
     );
 };
 

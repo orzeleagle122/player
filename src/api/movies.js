@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {userLogin} from "../redux/account/userSlice";
 
 const APIURL = 'https://thebetter.bsgroup.eu';
 
@@ -16,21 +15,6 @@ export const login = async (Username, Password) => {
             'Content-Type': "application/json"
         }
     })
-    //tutaj return
     console.log(response);
     // userLogin(data);
-}
-
-export const continueAsGuest = async () => {
-
-    const response = await axios.post(`${APIURL}/Authorization/SignIn`, {
-        Device: {
-            PlatformCode: "WEB",
-            Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        }
-    }, {
-        headers: {
-            'Content-Type': "application/json"
-        }
-    })
 }

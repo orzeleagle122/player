@@ -7,6 +7,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `;
 
 export const Wrapper = styled.div`
@@ -18,7 +19,24 @@ export const Wrapper = styled.div`
   border: 3px solid rgba(249, 249, 249, 0.1);
   display: flex;
   flex-direction: column;
-  padding: 10px 20px 10px 20px;
+  align-items: center;
+  padding: 10px 20px 40px 20px;
+  
+
+  h1 {
+    padding-bottom: 20px !important;
+    margin-top: 40px;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+  }
+  
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -26,3 +44,20 @@ export const ButtonsWrapper = styled.div`
   gap: 20px;
   flex-wrap: wrap;
 `
+
+export const LogoWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+
+  img {
+    width: 150px;
+  }
+
+  h3 {
+    margin: 0 auto 0 auto;
+    padding-right: 170px;
+  }
+`;

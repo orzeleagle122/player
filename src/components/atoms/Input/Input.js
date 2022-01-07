@@ -8,6 +8,7 @@ const InputWrapper = styled.input`
   font-size: 18px;
   border-radius: 15px;
   position: relative;
+  width: 100%;
 
 `;
 

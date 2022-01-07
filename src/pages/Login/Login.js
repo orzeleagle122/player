@@ -1,52 +1,45 @@
 import React, {useEffect} from 'react';
-import {Container, Wrapper, ButtonsWrapper} from "./Login.elements";
-import {Button, Input} from "../../components";
-import {login} from "../../api/login";
+import {Container, Wrapper, ButtonsWrapper, LogoWrapper} from "./Login.elements";
+import {Button, Input, SocialButton} from "../../components";
+import {continueAsGuest, login} from "../../api/login";
 import {Formik, Field, Form, useFormik} from 'formik';
-import * as yup from 'yup';
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
+import axios from 'axios';
+import {getUserInformation} from "../../redux/account/userSlice";
+import {useSelector} from "react-redux";
+import {AiFillFacebook, AiFillApple} from "react-icons/ai";
 
 const Login = () => {
 
-    const validationSchema = yup.object({
-        email: yup
-            .string('Enter your email')
-            .email('Enter a valid email')
-            .required('Email is required'),
-        password: yup
-            .string('Enter your password')
-            .min(8, 'Password should be of minimum 8 characters length')
-            .required('Password is required'),
-    });
-
     const formik = useFormik({
         initialValues: {
-            email: 'foobar@example.com',
-            password: 'foobar',
+            email: '',
+            password: '',
         },
-        validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log('test')
-            alert(JSON.stringify(values, null, 2));
+            login(values.email, values.password)
+            // .finally(() => console.log('elo'));
         },
     });
+
+    const isLogin = useSelector(getUserInformation);
+
+    if (isLogin) return <Navigate to={`/main`}/>
 
 
     return (
         <Container>
             <Wrapper>
-                {/*<h1>Welcome guest!</h1>*/}
-                {/*<label htmlFor={`email`}>Email</label>*/}
-                {/*<Input id={`email`} type={`email`}/>*/}
-                {/*<label htmlFor={`password`}>password</label>*/}
-                {/*<Input id={`password`} type={`password`} placeholder={`test`}/>*/}
+                <LogoWrapper>
+                    <img src={`https://www.bsgroup.eu/wp-content/uploads/BSG-Logo-Inline-Biale-Litery-1.svg`}
+                         alt={`logo`}/>
+                    <h3>Sign up</h3>
+                </LogoWrapper>
 
-                {/*<ButtonsWrapper>*/}
-                {/*    <Button>Log in</Button>*/}
-                {/*    <Button>Register</Button>*/}
-                {/*    <Button>Continue as guest</Button>*/}
-                {/*</ButtonsWrapper>*/}
+                <SocialButton apple onClick={()=>alert('only for demonstration')}> <AiFillApple/> Sign up with apple</SocialButton>
+                <SocialButton facebook onClick={()=>alert('only for demonstration')}><AiFillFacebook/> Sign up with facebook</SocialButton>
 
+                <h1>Welcome to movie player!</h1>
 
                 <form onSubmit={formik.handleSubmit}>
 
@@ -57,8 +50,7 @@ const Login = () => {
                         label="Email"
                         value={formik.values.email}
                         onChange={formik.handleChange}
-                        error={formik.touched.email && Boolean(formik.errors.email)}
-                        helperText={formik.touched.email && formik.errors.email}
+                        placeholder={`Account email`}
                     />
                     <Input
                         fullWidth
@@ -68,13 +60,14 @@ const Login = () => {
                         type="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        helperText={formik.touched.password && formik.errors.password}
+                        placeholder={`password`}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">Log in</Button>
                 </form>
-                <Button>Register</Button>
-                <Button><Link to={"/main"}>Continue as guest</Link></Button>
+                <ButtonsWrapper>
+                    <Button>Register</Button>
+                    <Button isGrey isBig onClick={continueAsGuest}>Continue as guest</Button>
+                </ButtonsWrapper>
 
 
             </Wrapper>
