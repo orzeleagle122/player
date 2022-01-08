@@ -10,27 +10,20 @@ const ButtonWrapper = styled.button`
   font-weight: 700;
   font-size: 15px;
   margin-top: 20px;
-  border-radius: 10px;
+  border-radius: 16px;
   border: #2d3ddf;
   cursor: pointer;
-  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: #EBEDFF;
-    color: black;
-    border: 3px solid #2d3ddf;
-
-    ${({isGrey}) => isGrey && css`
-      background-color: #EBEDFF;
-      border: 5px solid gray;
-    `}
+    opacity: 0.8;
   }
 
   ${({isGrey}) => isGrey && css`
     background-color: gray;
     border: gray;
   `}
-  
+
   ${({isBig}) => isBig && css`
     width: 200px;
   `}

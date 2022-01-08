@@ -11,7 +11,7 @@ const VideoPlayer = () => {
 
     return (
         <Container>
-            <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' controls={true}/>
+            <ReactPlayer url='https://img-9gag-fun.9cache.com/photo/azeXPBm_460svav1.mp4' controls={true}/>
         </Container>
     );
 };

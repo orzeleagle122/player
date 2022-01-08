@@ -13,11 +13,14 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
-  
-  h1,h2,h3,h4,h5{
+
+  h1, h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
+    font-weight: normal;
+    color: white;
   }
+  
 `;
 
 export default GlobalStyle;

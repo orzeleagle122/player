@@ -10,17 +10,16 @@ const ButtonWrapper = styled.button`
   font-weight: 700;
   font-size: 12px;
   margin-top: 10px;
-  border-radius: 10px;
+  border-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
   transition: all 0.2s ease-in-out;
-  
-  svg{
+
+  svg {
     font-size: 20px;
   }
 
@@ -31,7 +30,7 @@ const ButtonWrapper = styled.button`
   ${({facebook}) => facebook && css`
     background-color: #1977F2;
   `}
-  
+
   ${({apple}) => apple && css`
     background-color: black;
   `}

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import Slider from "react-slick";
 
-export const Container=styled.div`
+export const Container = styled.div`
   height: 400px;
   background-color: darkblue;
+  max-width: 1290px;
 `;
 
 export const Carousel = styled(Slider)`
@@ -28,8 +29,8 @@ export const Carousel = styled(Slider)`
   button {
     z-index: 1;
   }
-  
-  div{
+
+  div {
     height: 250px;
     border: 2px solid red;
   }
