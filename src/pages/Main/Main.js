@@ -4,9 +4,12 @@ import {Navbar, VideoPlayer} from "../../components";
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getIsLogin} from "../../redux/account/userSlice";
-import {Drawer, CloseMenuWrapper} from "./Main.elements";
+import {Drawer, CloseMenuWrapper, CardContainer, Card, CardContent} from "./Main.elements";
 import {CgClose} from "react-icons/cg";
+import * as PropTypes from "prop-types";
+import {FaPlay} from "react-icons/fa";
 
+CardContent.propTypes = {children: PropTypes.node};
 const Main = () => {
     const [openMenu, setOpenMenu] = useState(false)
     const isLogin = useSelector(getIsLogin);
@@ -16,16 +19,48 @@ const Main = () => {
             <Navbar setOpenMenu={setOpenMenu}/>
             <Drawer openMenu={openMenu}>
                 <CloseMenuWrapper>
+                    <p>Video list</p>
                     <CgClose onClick={() => {
                         setOpenMenu(prevState => !prevState)
                     }}/>
                 </CloseMenuWrapper>
-                <div>
+                <CardContainer>
+                    <Card
+                        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FlgotX8-9dX4%2Fmaxresdefault.jpg&f=1&nofb=1">
+                        <FaPlay/>
+                        <CardContent>
+                            <h3>Tytuł</h3>
+                            <p>Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu
+                                Opis
+                                filmu </p>
+                        </CardContent>
+                    </Card>
+                    <Card
+                        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FlgotX8-9dX4%2Fmaxresdefault.jpg&f=1&nofb=1">
+                        <FaPlay/>
+                        <CardContent>
+                            <h3>Tytuł</h3>
+                            <p>Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu
+                                Opis
+                                filmu </p>
+                        </CardContent>
+                    </Card>
+                    <Card
+                        image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FlgotX8-9dX4%2Fmaxresdefault.jpg&f=1&nofb=1">
+                        <FaPlay/>
+                        <CardContent>
+                            <h3>Tytuł</h3>
+                            <p>Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu Opis filmu
+                                Opis
+                                filmu </p>
+                        </CardContent>
+                    </Card>
 
-                </div>
+                </CardContainer>
             </Drawer>
             <VideoPlayer/>
             {/*<CarouselSlider/>*/}
+
 
         </div>
     );

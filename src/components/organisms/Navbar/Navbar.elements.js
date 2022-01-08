@@ -9,14 +9,17 @@ export const Container = styled.div`
   transition: 0.2s ease-in-out;
   position: fixed;
   backdrop-filter: blur(5px);
+  z-index: 2;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   color: white;
   position: relative;
+  padding-left: 10%;
+  padding-right: 10%;
 
   img {
     height: 55px;

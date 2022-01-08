@@ -15,7 +15,7 @@ const initialState = {
         Initials: "",
         Products: [],
     },
-    isLogin: false,
+    isLogin: true,
     isFetching: false,
     isError: false,
 }

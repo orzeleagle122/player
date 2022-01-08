@@ -4,7 +4,6 @@ export const Drawer = styled.div`
   width: 400px;
   position: fixed;
     //display: ${({openMenu}) => openMenu ? "initial" : "none"};
-  display: initial;
   color: white;
   right: 0;
   top: 0;
@@ -20,14 +19,86 @@ export const Drawer = styled.div`
 
 export const CloseMenuWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  height: 65px;
-  margin-right: 20px;
+  min-height: 70px !important;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+  p {
+    margin-left: 20px;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
 
   svg {
     font-size: 25px;
+    margin-right: 20px;
     cursor: pointer;
   }
 `;
+
+export const CardContainer = styled.div`
+  max-height: 100%;
+  overflow-y: auto;
+  align-items: center;
+  padding-bottom: 20px;
+`;
+
+export const Card = styled.div`
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  margin: 10px;
+  height: 150px;
+  background-image: ${({image}) => `url(${image})`};
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+  transition: 0.25s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    justify-content: space-between;
+  }
+
+  &:hover div p {
+    display: initial;
+    text-overflow: initial;
+    white-space: normal;
+  }
+
+  &:hover svg {
+    display: initial;
+  }
+
+  svg {
+    font-size: 24px;
+    display: none;
+  }
+`;
+
+export const CardContent = styled.div`
+  p {
+    color: #cecece;
+    transition: 0.25s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 90%;
+    margin: 0;
+  }
+
+  h3 {
+    margin-bottom: 5px;
+  }
+
+`;
+
+
 

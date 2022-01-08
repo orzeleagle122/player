@@ -18,7 +18,6 @@ const Navbar = ({setOpenMenu}) => {
         <Container isTransparent={navbar}>
             <Wrapper>
                 <img src={`https://www.bsgroup.eu/wp-content/uploads/BSG-Logo-Inline-Biale-Litery-1.svg`} alt={`logo`}/>
-                <div>menu</div>
                 <AiOutlineMenu onClick={() => setOpenMenu(prevState => !prevState)}/>
             </Wrapper>
         </Container>
