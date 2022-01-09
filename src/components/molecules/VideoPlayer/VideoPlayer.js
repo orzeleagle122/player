@@ -13,10 +13,14 @@ const VideoPlayer = () => {
             <ReactPlayer
                 url='https://cdn.videvo.net/videvo_files/video/free/2020-05/large_watermarked/3d_ocean_1590675653_preview.mp4'
                 controls={true} width={`100%`}
-                pip={scrollPosition>=300}
+                pip={scrollPosition >= 300}
                 height="auto"/>
-            <h3>Tytuł filmu</h3>
-            <p>Praesent placerat egestas faucibus. Cras vehicula, libero vestibulum volutpat finibus, nibh magna gravida
+            <br/>
+            <br/>
+            <h1>Tytuł filmu</h1>
+            <p>
+                Praesent placerat egestas faucibus. Cras vehicula, libero vestibulum volutpat finibus, nibh magna
+                gravida
                 velit, eget mollis ligula lorem convallis urna. Sed a posuere augue, non commodo massa. Curabitur
                 eleifend ullamcorper odio, non posuere sapien imperdiet gravida. Quisque sed nulla nec lorem cursus
                 iaculis ac in justo. Aliquam sed suscipit elit. Sed viverra dictum tortor quis dapibus. Nulla dui

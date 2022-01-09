@@ -80,7 +80,7 @@ export const userLoginAction = (Username, Password) => async (dispatch) => {
 }
 
 export const continueAsGuestAction = () => async (dispatch) => {
-    await axios.post(`${APIURL}/Authorization/SignIn`,
+    return await axios.post(`${APIURL}/Authorization/SignIn`,
         {
             Device: {
                 PlatformCode: "WEB",

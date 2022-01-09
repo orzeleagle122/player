@@ -41,6 +41,13 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  
+  @media screen and (max-width: 422px){
+    flex-direction: column;
+    gap: 1px;
+    align-items: center;
+  }
+  
 `
 
 export const LogoWrapper = styled.div`

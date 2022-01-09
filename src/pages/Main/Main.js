@@ -41,8 +41,9 @@ const Main = () => {
                     <VideoCart/>
                     <VideoCart/>
                 </GridWrapper>
+                {/*<CarouselSlider/>*/}
             </ThemeContainer>
-            {/*<CarouselSlider/>*/}
+
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Wrapper, ButtonsWrapper, LogoWrapper, Separator} from "./Login.elements";
 import {Button, SocialButton, LoginForm} from "../../components";
 import {Navigate} from "react-router-dom";
@@ -19,9 +19,12 @@ const Login = () => {
     const dispatch = useDispatch();
     const isLogin = useSelector(getIsLogin);
 
+    const [isLoading,setIsLoading]=useState(false)
+
     useEffect(() => {
 
     }, [isLogin])
+
 
     if (isLogin) return <Navigate to={`/main`}/>
 
@@ -51,8 +54,17 @@ const Login = () => {
 
                 <ButtonsWrapper>
                     <Button onClick={() => {
+                        alert("not required in the task")
                     }}>Register</Button>
-                    <Button secondary isBig onClick={() => dispatch(continueAsGuestAction())}>Continue as guest</Button>
+                    <Button secondary isBig onClick={() => {
+                        setIsLoading(true);
+                        dispatch(continueAsGuestAction()).finally(()=>setIsLoading(false))}
+                    }>
+                        {isLoading
+                            ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}/> Logging as guest</>
+                            : "Continue as guest"
+                        }
+                    </Button>
                 </ButtonsWrapper>
 
             </Wrapper>
