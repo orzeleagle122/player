@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Container, Wrapper, ButtonsWrapper, LogoWrapper, Separator} from "./Login.elements";
 import {Button, SocialButton, LoginForm} from "../../components";
-import {Navigate} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 import {
     continueAsGuestAction,
     errorLoginAction,

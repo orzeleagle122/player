@@ -19,7 +19,7 @@ const initialState = {
         Products: [],
     },
     isLogin: true,
-    isFetching: true,
+    isFetching: false,
     isError: false,
 }
 
