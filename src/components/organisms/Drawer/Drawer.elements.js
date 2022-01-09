@@ -7,7 +7,6 @@ export const Container = styled.div`
   color: white;
   right: 0;
   top: 0;
-  height: 100vh;
   z-index: 10;
   background-color: #1a283a;
   transition: all 0.5s ease-in-out;
@@ -21,14 +20,14 @@ export const CloseMenuWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 75px !important;
+  min-height: 70px !important;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
   p {
-    margin-left: 20px;
     font-size: 20px;
     letter-spacing: 0.5px;
+    margin-left: 20px;
   }
 
   svg {
@@ -38,9 +37,39 @@ export const CloseMenuWrapper = styled.div`
   }
 `;
 
-export const CardContainer = styled.div`
-  max-height: 100%;
-  overflow-y: auto;
+export const DrawerContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
+  flex-direction: column;
+`;
+
+export const ProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 20px;
+
+  svg {
+    cursor: pointer;
+  }
+`;
+
+export const ProfileInformation = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
 `;

@@ -3,9 +3,9 @@ import styled, {css} from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   height: 70px;
-  background: ${({isTransparent}) => (!isTransparent ? 'transparent' : 'black')};
+  background-color: rgba(14, 22, 31, 0.7);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  opacity: ${({isTransparent}) => (!isTransparent ? '1' : '0.5')};
+    //opacity: ${({isTransparent}) => (!isTransparent ? '1' : '0.5')};
   transition: 0.2s ease-in-out;
   position: fixed;
   backdrop-filter: blur(5px);
@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   color: white;
   position: relative;
+  padding-top: 5px;
 
   img {
     height: 55px;
@@ -38,6 +39,7 @@ export const AccountWrapper = styled.div`
   justify-content: center;
   gap: 10px;
   align-items: center;
+  cursor: pointer;
 
   img {
     border-radius: 50%;

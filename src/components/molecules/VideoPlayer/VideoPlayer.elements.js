@@ -3,10 +3,9 @@ import ReactPlayer from "react-player";
 
 export const Container = styled.main`
   width: 100%;
-  min-height: 100vh;
   background-color: #0e161f;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
 

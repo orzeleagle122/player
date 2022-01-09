@@ -43,6 +43,10 @@ const GlobalStyle = createGlobalStyle`
     color: white;
   }
 
+  p {
+    color: white;
+  }
+
   @keyframes animateDown {
     0%, 20%, 50%, 80%, 100% {
       transform: translateY(0);

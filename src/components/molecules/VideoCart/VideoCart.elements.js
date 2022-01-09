@@ -35,6 +35,7 @@ export const Card = styled.div`
   svg {
     font-size: 24px;
     display: none;
+    color: white;
   }
 `;
 

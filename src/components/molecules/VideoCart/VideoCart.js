@@ -6,7 +6,13 @@ import {Card, CardContent} from "./VideoCart.elements";
 const VideoCart = ({setOpenMenu}) => {
     return (
         <Card
-            onClick={() => setOpenMenu(false)}
+            onClick={() => {
+                // setOpenMenu(false);
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }}
             image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FlgotX8-9dX4%2Fmaxresdefault.jpg&f=1&nofb=1">
             <FaPlay/>
             <CardContent>

@@ -31,12 +31,12 @@ const ButtonWrapper = styled.button`
   ${({isBig}) => isBig && css`
     width: 200px;
   `}
-  
+
   ${({isSmall}) => isSmall && css`
     width: 70px;
     height: 30px;
     font-size: 9px;
-    margin: 0px;
+    margin: 10px;
   `}
 
 `;
