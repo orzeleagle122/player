@@ -18,8 +18,6 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   color: white;
   position: relative;
-  padding-left: 10%;
-  padding-right: 10%;
 
   img {
     height: 55px;
