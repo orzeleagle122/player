@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Exo 2', sans-serif;
     box-sizing: border-box;
     overflow-x: hidden;
+    background-color: #0e161f;
   }
 
   * {

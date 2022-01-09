@@ -13,7 +13,21 @@ const Drawer = ({openMenu,setOpenMenu}) => {
                 }}/>
             </CloseMenuWrapper>
             <CardContainer>
-                <VideoCart setOpenMenu={setOpenMenu}/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
             </CardContainer>
         </Container>
     );
