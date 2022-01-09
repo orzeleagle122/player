@@ -9,6 +9,27 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
 
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #22476B transparent;
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+    margin-right: 2px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #22476B;
+    border-radius: 16px;
+    border: 1px solid transparent;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
@@ -29,10 +50,10 @@ const GlobalStyle = createGlobalStyle`
       transform: translateY(15px);
     }
     60% {
-      transform: scale(1.2,1.2);
+      transform: scale(1.2, 1.2);
     }
   }
-  
+
 `;
 
 export default GlobalStyle;

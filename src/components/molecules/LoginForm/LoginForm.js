@@ -17,7 +17,7 @@ const LoginForm = () => {
         onSubmit: (values) => {
             setIsLoading(true);
             dispatch(userLoginAction(values.email, values.password))
-                .finally(()=>setIsLoading(false));
+                .finally(() => setIsLoading(false));
         },
     });
 

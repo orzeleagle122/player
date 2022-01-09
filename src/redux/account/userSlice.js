@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 // TODO: utrzymać zalogowanie po refrashu
 //TODO: logout
+// TODO: Zmiana try catch na promise
 
 const initialState = {
     AuthorizationToken: {
