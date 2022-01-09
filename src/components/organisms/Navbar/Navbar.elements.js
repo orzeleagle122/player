@@ -26,18 +26,40 @@ export const Wrapper = styled.div`
     padding-top: 5px;
     padding-bottom: 5px;
   }
-  svg{
+
+  svg {
     font-size: 25px;
     cursor: pointer;
   }
 `;
 
-export const AccountWrapper=styled.div`
- margin-left: auto;
+export const AccountWrapper = styled.div`
+  margin-left: auto;
   margin-right: 20px;
   display: flex;
   justify-content: center;
-  gap:10px;
+  gap: 10px;
   align-items: center;
+
+  img {
+    border-radius: 50%;
+    width: 40px;
+    height: auto;
+  }
 `
+
+export const UserData = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  p {
+    font-weight: normal;
+    margin: 0;
+  }
+
+  span {
+    font-size: 12px;
+  }
+`;
 
