@@ -58,8 +58,8 @@ export const {userLogin, continueAsGuest, sendRequest, errorLogin, keepLogin, se
 const APIURL = 'https://thebetter.bsgroup.eu';
 
 export const userLoginAction = (Username, Password) => async (dispatch) => {
-    try {
-        const response = await axios.post(`${APIURL}/Authorization/SignIn`, {
+    return await axios.post(`${APIURL}/Authorization/SignIn`,
+        {
             Username,
             Password,
             Device: {
@@ -70,20 +70,18 @@ export const userLoginAction = (Username, Password) => async (dispatch) => {
             headers: {
                 'Content-Type': "application/json"
             }
-        });
-        console.log(response);
-        dispatch(userLogin(response));
-        localStorage.setItem("token", "TOKEN Z REPONSE");
-        return response;
-    } catch (err) {
-        dispatch(errorLoginAction());
-        return Promise.reject(err);
-    }
+        })
+        .then(response => {
+            console.log(response);
+            dispatch(userLogin(response));
+            localStorage.setItem("token", "TOKEN Z REPONSE");
+        })
+        .catch(() => dispatch(errorLoginAction()));
 }
 
 export const continueAsGuestAction = () => async (dispatch) => {
-    try {
-        const response = await axios.post(`${APIURL}/Authorization/SignIn`, {
+    await axios.post(`${APIURL}/Authorization/SignIn`,
+        {
             Device: {
                 PlatformCode: "WEB",
                 Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -93,23 +91,25 @@ export const continueAsGuestAction = () => async (dispatch) => {
                 'Content-Type': "application/json"
             }
         })
-        console.log(response);
-        dispatch(userLogin(response))
-    } catch (err) {
-        dispatch(errorLogin());
-    }
+        .then(response => {
+            console.log(response);
+            dispatch(userLogin(response));
+            localStorage.setItem("token", "TOKEN Z REPONSE");
+        })
+        .catch(() => dispatch(errorLogin()));
 }
 
 export const errorLoginAction = () => async (dispatch) => {
     dispatch(errorLogin());
 }
 
-export const keepLoginAction = () => async (dispatch) => {
-    try {
-        const token = localStorage.getItem("token");
-        if (!token) throw new Error("no token");
-
-        const response = await axios.post(`${APIURL}/Authorization/xxxxxxxxxxxxxxxxx`, {
+export const keepLoginAction = (token) => async (dispatch) => {
+    if (!token) {
+        dispatch(setIsFetching(false));
+        return;
+    }
+    await axios.post(`${APIURL}/Authorization/${token}`,
+        {
             Device: {
                 PlatformCode: "WEB",
                 Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -119,12 +119,14 @@ export const keepLoginAction = () => async (dispatch) => {
                 'Content-Type': "application/json"
             }
         })
-        console.log(response);
-        dispatch(keepLogin(response))
-    } catch (err) {
-        console.log(err);
-        dispatch(setIsFetching(false));
-    }
+        .then(response => {
+            console.log(response);
+            dispatch(keepLogin(response))
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => dispatch(setIsFetching(false)))
 }
 
 

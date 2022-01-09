@@ -11,7 +11,8 @@ const App = () => {
     const isFetching = useSelector(getIsFetching);
 
     useEffect(() => {
-            dispatch(keepLoginAction());
+        const token = localStorage.getItem("token");
+        dispatch(keepLoginAction(token));
     }, [isLogin])
 
     if (isFetching) return <SplashScreen/>

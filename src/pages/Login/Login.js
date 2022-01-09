@@ -20,10 +20,7 @@ const Login = () => {
     const isLogin = useSelector(getIsLogin);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if(token){
-            dispatch(keepLoginAction(token));
-        }
+
     }, [isLogin])
 
     if (isLogin) return <Navigate to={`/main`}/>
@@ -53,8 +50,9 @@ const Login = () => {
                 <LoginForm/>
 
                 <ButtonsWrapper>
-                    <Button onClick={() => {}}>Register</Button>
-                    <Button secondary isBig onClick={()=>dispatch(continueAsGuestAction())}>Continue as guest</Button>
+                    <Button onClick={() => {
+                    }}>Register</Button>
+                    <Button secondary isBig onClick={() => dispatch(continueAsGuestAction())}>Continue as guest</Button>
                 </ButtonsWrapper>
 
             </Wrapper>
