@@ -20,6 +20,18 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     color: white;
   }
+
+  @keyframes animateDown {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(15px);
+    }
+    60% {
+      transform: scale(1.2,1.2);
+    }
+  }
   
 `;
 

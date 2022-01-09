@@ -14,6 +14,20 @@ const Drawer = ({openMenu,setOpenMenu}) => {
             </CloseMenuWrapper>
             <CardContainer>
                 <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
+                <VideoCart/>
             </CardContainer>
         </Container>
     );

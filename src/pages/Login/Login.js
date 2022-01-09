@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Container, Wrapper, ButtonsWrapper, LogoWrapper, Separator} from "./Login.elements";
 import {Button, SocialButton, LoginForm} from "../../components";
-import {continueAsGuest, login} from "../../api/login";
 import {Navigate} from "react-router-dom";
 import {
+    continueAsGuestAction,
     errorLoginAction,
     getIsError,
     getIsFetching,
-    getIsLogin,
+    getIsLogin, keepLoginAction,
     sendRequest,
     userLoginAction
 } from "../../redux/account/userSlice";
@@ -19,6 +19,12 @@ const Login = () => {
     const dispatch = useDispatch();
     const isLogin = useSelector(getIsLogin);
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(token){
+            dispatch(keepLoginAction(token));
+        }
+    }, [isLogin])
 
     if (isLogin) return <Navigate to={`/main`}/>
 
@@ -47,8 +53,8 @@ const Login = () => {
                 <LoginForm/>
 
                 <ButtonsWrapper>
-                    <Button onClick={() => errorLoginAction()}>Register</Button>
-                    <Button isGrey isBig onClick={continueAsGuest}>Continue as guest</Button>
+                    <Button onClick={() => {}}>Register</Button>
+                    <Button secondary isBig onClick={()=>dispatch(continueAsGuestAction())}>Continue as guest</Button>
                 </ButtonsWrapper>
 
             </Wrapper>

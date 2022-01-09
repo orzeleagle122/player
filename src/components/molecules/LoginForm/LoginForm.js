@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useFormik} from "formik";
 import {getIsError, getIsFetching, sendRequest, userLoginAction} from "../../../redux/account/userSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -6,8 +6,8 @@ import {Button, Input} from "../../index";
 import {FormWrapper} from "./LoginForm.elements";
 
 const LoginForm = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const isFetching = useSelector(getIsFetching);
     const isError = useSelector(getIsError);
     const formik = useFormik({
         initialValues: {
@@ -15,15 +15,16 @@ const LoginForm = () => {
             password: '',
         },
         onSubmit: (values) => {
-            dispatch(sendRequest());
-            dispatch(userLoginAction(values.email, values.password));
+            setIsLoading(true);
+            dispatch(userLoginAction(values.email, values.password))
+                .finally(()=>setIsLoading(false));
         },
     });
 
     return (
         <FormWrapper>
             <form onSubmit={formik.handleSubmit}>
-
+                {isError && <p>Something went wrong...</p>}
                 <Input
                     fullWidth
                     id="email"
@@ -43,9 +44,13 @@ const LoginForm = () => {
                     onChange={formik.handleChange}
                     placeholder={`password`}
                 />
-                <Button type="submit" disabled={isFetching}>Log in</Button>
-                {isFetching && "Logging..."}
-                {isError && "Something went wrong..."}
+                <Button type="submit" disabled={isLoading}>
+                    {isLoading
+                        ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}/> Logging in</>
+                        : "Log in"
+                    }
+                </Button>
+
             </form>
         </FormWrapper>
     );

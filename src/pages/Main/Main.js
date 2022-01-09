@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {Navbar, VideoPlayer, VideoCart, Drawer} from "../../components";
-// import CarouselSlider from "../../components/molecules/CarouselSlider/CarouselSlider";
+import {Navbar, VideoPlayer, Drawer,CarouselSlider} from "../../components";
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getIsLogin} from "../../redux/account/userSlice";
@@ -15,8 +14,6 @@ const Main = () => {
             <Drawer openMenu={openMenu} setOpenMenu={setOpenMenu}/>
             <VideoPlayer/>
             {/*<CarouselSlider/>*/}
-
-
         </div>
     );
 };

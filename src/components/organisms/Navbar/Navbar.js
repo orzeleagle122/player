@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Container, Wrapper} from "./Navbar.elements";
+import {AccountWrapper, Container, Wrapper} from "./Navbar.elements";
 import {AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
+import {Button} from "../../index";
 
 const Navbar = ({setOpenMenu}) => {
     const [navbar, setNavbar] = useState(false);
@@ -18,6 +19,10 @@ const Navbar = ({setOpenMenu}) => {
         <Container isTransparent={navbar}>
             <Wrapper>
                 <img src={`https://www.bsgroup.eu/wp-content/uploads/BSG-Logo-Inline-Biale-Litery-1.svg`} alt={`logo`}/>
+                <AccountWrapper>
+                    <p>Patryk Orłowski: TRIAL</p>
+                    <Button secondary isSmall>Log out</Button>
+                </AccountWrapper>
                 <AiOutlineMenu onClick={() => setOpenMenu(prevState => !prevState)}/>
             </Wrapper>
         </Container>

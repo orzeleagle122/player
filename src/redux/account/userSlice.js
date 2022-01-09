@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 // TODO: utrzymać zalogowanie po refrashu
+//TODO: logout
 
 const initialState = {
     AuthorizationToken: {
@@ -16,8 +17,8 @@ const initialState = {
         Initials: "",
         Products: [],
     },
-    isLogin: false,
-    isFetching: false,
+    isLogin: true,
+    isFetching: true,
     isError: false,
 }
 
@@ -29,14 +30,19 @@ export const userSlice = createSlice({
             return {...state, isLogin: true}
         },
         continueAsGuest: (state, action) => {
-
+            return {...state, isLogin: true}
         },
         sendRequest: (state) => {
-            console.log("jestem tutaj?")
-            return {...state, isFetching: true, isError: false}
+            return {...state, isError: false}
         },
         errorLogin: (state) => {
             return {...state, isFetching: false, isLogin: false, isError: true}
+        },
+        keepLogin: (state, action) => {
+            return {...state, isLogin: true, isFetching: false}
+        },
+        setIsFetching: (state, action) => {
+            state.isFetching = action.payload;
         }
     }
 })
@@ -44,7 +50,8 @@ export const userSlice = createSlice({
 export const getIsLogin = state => state.user.isLogin;
 export const getIsFetching = state => state.user.isFetching;
 export const getIsError = state => state.user.isError;
-export const {userLogin, continueAsGuest, sendRequest, errorLogin} = userSlice.actions;
+
+export const {userLogin, continueAsGuest, sendRequest, errorLogin, keepLogin, setIsFetching} = userSlice.actions;
 
 // actions
 const APIURL = 'https://thebetter.bsgroup.eu';
@@ -62,20 +69,61 @@ export const userLoginAction = (Username, Password) => async (dispatch) => {
             headers: {
                 'Content-Type': "application/json"
             }
+        });
+        console.log(response);
+        dispatch(userLogin(response));
+        localStorage.setItem("token", "TOKEN Z REPONSE");
+        return response;
+    } catch (err) {
+        dispatch(errorLoginAction());
+        return Promise.reject(err);
+    }
+}
+
+export const continueAsGuestAction = () => async (dispatch) => {
+    try {
+        const response = await axios.post(`${APIURL}/Authorization/SignIn`, {
+            Device: {
+                PlatformCode: "WEB",
+                Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            }
+        }, {
+            headers: {
+                'Content-Type': "application/json"
+            }
         })
         console.log(response);
         dispatch(userLogin(response))
     } catch (err) {
-        dispatch(errorLoginAction());
+        dispatch(errorLogin());
     }
-}
-
-export const continueAsGuestAction = () => {
-
 }
 
 export const errorLoginAction = () => async (dispatch) => {
     dispatch(errorLogin());
+}
+
+export const keepLoginAction = () => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        if (!token) throw new Error("no token");
+
+        const response = await axios.post(`${APIURL}/Authorization/xxxxxxxxxxxxxxxxx`, {
+            Device: {
+                PlatformCode: "WEB",
+                Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            }
+        }, {
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
+        console.log(response);
+        dispatch(keepLogin(response))
+    } catch (err) {
+        console.log(err);
+        dispatch(setIsFetching(false));
+    }
 }
 
 

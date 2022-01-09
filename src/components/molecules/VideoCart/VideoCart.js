@@ -1,6 +1,7 @@
 import React from 'react';
 import {FaPlay} from "react-icons/fa";
 import {Card, CardContent} from "./VideoCart.elements";
+//TODO: style scroll
 
 const VideoCart = () => {
     return (

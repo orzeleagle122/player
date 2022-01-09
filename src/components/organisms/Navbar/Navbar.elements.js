@@ -32,3 +32,12 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const AccountWrapper=styled.div`
+ margin-left: auto;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  gap:10px;
+  align-items: center;
+`
+

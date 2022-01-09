@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 20px 40px 20px;
+  padding: 30px 20px 40px 20px;
 
   h2 {
     padding-bottom: 20px;

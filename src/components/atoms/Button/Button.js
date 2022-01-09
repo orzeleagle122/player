@@ -14,18 +14,29 @@ const ButtonWrapper = styled.button`
   border: #2d3ddf;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 
   &:hover {
     opacity: 0.8;
   }
 
-  ${({isGrey}) => isGrey && css`
+  ${({secondary}) => secondary && css`
     background-color: gray;
     border: gray;
   `}
 
   ${({isBig}) => isBig && css`
     width: 200px;
+  `}
+  
+  ${({isSmall}) => isSmall && css`
+    width: 70px;
+    height: 30px;
+    font-size: 9px;
+    margin: 0px;
   `}
 
 `;

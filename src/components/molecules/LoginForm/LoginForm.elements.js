@@ -14,4 +14,9 @@ export const FormWrapper=styled.div`
     gap: 10px;
     width: 80%;
   }
+  
+  p{
+    color: red;
+    font-weight: bold;
+  }
 `
