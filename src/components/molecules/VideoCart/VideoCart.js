@@ -3,9 +3,10 @@ import {FaPlay} from "react-icons/fa";
 import {Card, CardContent} from "./VideoCart.elements";
 //TODO: style scroll
 
-const VideoCart = () => {
+const VideoCart = ({setOpenMenu}) => {
     return (
         <Card
+            onClick={() => setOpenMenu(false)}
             image="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FlgotX8-9dX4%2Fmaxresdefault.jpg&f=1&nofb=1">
             <FaPlay/>
             <CardContent>
