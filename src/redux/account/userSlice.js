@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+// TODO: utrzymać zalogowanie po refrashu
 
 const initialState = {
     AuthorizationToken: {
@@ -15,7 +16,7 @@ const initialState = {
         Initials: "",
         Products: [],
     },
-    isLogin: true,
+    isLogin: false,
     isFetching: false,
     isError: false,
 }
