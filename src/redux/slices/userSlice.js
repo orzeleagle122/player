@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import {errorMessage} from "./movieSlice";
 
 const initialState = {
     AuthorizationToken: {
@@ -42,6 +43,9 @@ export const userSlice = createSlice({
         },
         setIsFetching: (state, action) => {
             state.isFetching = action.payload;
+        },
+        logOut: (state, action) => {
+            return {AuthorizationToken: {}, User: {}, isLogin: false, isFetching: true, streamPermission: ''}
         }
     }
 })
@@ -52,7 +56,15 @@ export const getIsError = state => state.user.isError;
 export const getUserPermission = state => state.user.streamPermission;
 export const getUser = state => state.user.User;
 
-export const {userLogin, continueAsGuest, sendRequest, errorLogin, keepLogin, setIsFetching} = userSlice.actions;
+export const {
+    userLogin,
+    continueAsGuest,
+    sendRequest,
+    errorLogin,
+    keepLogin,
+    setIsFetching,
+    logOut
+} = userSlice.actions;
 
 // actions
 const APIURL = 'https://thebetter.bsgroup.eu';
@@ -121,7 +133,8 @@ export const keepLoginAction = (refreshToken) => async (dispatch) => {
             }
         }, {
             headers: {
-                'Content-Type': "application/json"
+                'Content-Type': "application/json",
+                'Authorization': `Bearer ${refreshToken}`,
             }
         })
         .then(response => {
@@ -132,6 +145,13 @@ export const keepLoginAction = (refreshToken) => async (dispatch) => {
             console.log(error);
         })
         .finally(() => dispatch(setIsFetching(false)))
+}
+
+export const logOutAction = () => async (dispatch) => {
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('refreshToken');
+    dispatch(logOut());
+    dispatch(errorMessage(''));
 }
 
 

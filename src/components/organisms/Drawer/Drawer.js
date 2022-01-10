@@ -3,11 +3,12 @@ import {CgClose} from "react-icons/cg";
 import {DrawerContainer, CloseMenuWrapper, Container, ProfileContainer, ProfileInformation} from "./Drawer.elements";
 import {Button} from "../../index";
 import {BsGear} from "react-icons/bs";
-import {useSelector} from "react-redux";
-import {getUser} from "../../../redux/slices/userSlice";
+import {useSelector, useDispatch} from "react-redux";
+import {getUser, logOutAction} from "../../../redux/slices/userSlice";
 
 const Drawer = ({openMenu, setOpenMenu}) => {
-    const userData=useSelector(getUser);
+    const userData = useSelector(getUser);
+    const dispatch = useDispatch();
     return (
         <Container openMenu={openMenu}>
             <CloseMenuWrapper>
@@ -27,7 +28,7 @@ const Drawer = ({openMenu, setOpenMenu}) => {
                     </ProfileInformation>
                     <BsGear onClick={() => alert('user settings page')}/>
                 </ProfileContainer>
-                <Button isSmall secondary>Logout</Button>
+                <Button isSmall secondary onClick={() => dispatch(logOutAction())}>Logout</Button>
             </DrawerContainer>
         </Container>
     );

@@ -22,7 +22,6 @@ const Main = () => {
         const token = localStorage.getItem("token");
         dispatch(getMediaTopRatedListAction(token));
         dispatch(getMediaRecommendedListAction(token));
-
     }, [dispatch])
 
     if (!isLogin) return <Navigate to={`/`}/>
