@@ -8,6 +8,7 @@ const initialState = {
     },
     currentPlay: {},
     errorMessage: "",
+    isFetching: true,
 };
 
 export const movieSlice = createSlice({
@@ -15,16 +16,19 @@ export const movieSlice = createSlice({
     initialState,
     reducers: {
         getMediaRecommendedList: (state, action) => {
-            state.movieList.recommended = action.payload
+            state.movieList.recommended = action.payload;
+            state.isFetching = false;
         },
         getMediaTopRatedList: (state, action) => {
-            state.movieList.topRated = action.payload
+            state.movieList.topRated = action.payload;
+            state.isFetching = false;
         },
         getMediaPlayInfo: (state, action) => {
-            state.currentPlay = action.payload
+            state.currentPlay = action.payload;
         },
         errorMessage: (state, action) => {
             state.errorMessage = action.payload;
+            state.currentPlay = {};
         }
     }
 })
@@ -41,7 +45,7 @@ export const getErrorMessage = state => state.movie.errorMessage;
 const APIURL = 'https://thebetter.bsgroup.eu';
 
 export const getMediaRecommendedListAction = (token) => async (dispatch) => {
-    await axios.post(`${APIURL}/Media/GetMediaList`,
+    return await axios.post(`${APIURL}/Media/GetMediaList`,
         {
             MediaListId: 2,
             IncludeCategories: false,
@@ -64,7 +68,7 @@ export const getMediaRecommendedListAction = (token) => async (dispatch) => {
 }
 
 export const getMediaTopRatedListAction = (token) => async (dispatch) => {
-    await axios.post(`${APIURL}/Media/GetMediaList`,
+    return await axios.post(`${APIURL}/Media/GetMediaList`,
         {
             MediaListId: 6,
             IncludeCategories: false,

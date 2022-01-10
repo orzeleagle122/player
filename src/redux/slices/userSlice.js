@@ -106,7 +106,6 @@ export const continueAsGuestAction = () => async (dispatch) => {
         })
         .then(response => {
             const {data} = response;
-            console.log(data);
             dispatch(continueAsGuest(data));
             localStorage.setItem("token", data.AuthorizationToken.Token);
         })
@@ -122,6 +121,7 @@ export const keepLoginAction = (refreshToken) => async (dispatch) => {
         dispatch(setIsFetching(false));
         return;
     }
+    const token = localStorage.getItem("token");
     await axios.post(`${APIURL}/Authorization/RefreshToken`,
         {
             Token: refreshToken,
@@ -134,7 +134,7 @@ export const keepLoginAction = (refreshToken) => async (dispatch) => {
         }, {
             headers: {
                 'Content-Type': "application/json",
-                'Authorization': `Bearer ${refreshToken}`,
+                'Authorization': `${token}`,
             }
         })
         .then(response => {
@@ -142,16 +142,37 @@ export const keepLoginAction = (refreshToken) => async (dispatch) => {
             dispatch(keepLogin(data))
         })
         .catch(error => {
-            console.log(error);
+            console.log({error});
         })
         .finally(() => dispatch(setIsFetching(false)))
 }
 
 export const logOutAction = () => async (dispatch) => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('refreshToken');
-    dispatch(logOut());
-    dispatch(errorMessage(''));
+
+    const token = localStorage.getItem("token");
+    await axios.post(`${APIURL}/Authorization/SignOut`,
+        {
+            Name: "string",
+            PlatformCode: "string",
+            FirebaseToken: "string",
+            DpiCode: "string"
+        }, {
+            headers: {
+                'Content-Type': "application/json",
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then(response => {
+            dispatch(logOut());
+            dispatch(errorMessage(''));
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        .finally(() => {
+            window.localStorage.removeItem('token');
+            window.localStorage.removeItem('refreshToken');
+        })
 }
 
 
