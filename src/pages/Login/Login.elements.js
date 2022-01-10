@@ -8,6 +8,10 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 500px) {
+    align-items: flex-start;
+  }
+
 `;
 
 export const Wrapper = styled.div`
@@ -21,6 +25,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 30px 20px 40px 20px;
+  
+  @media screen and (max-width: 500px) {
+    min-height:100vh;
+  }
 
   h2 {
     padding-bottom: 20px;
@@ -41,13 +49,13 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  
-  @media screen and (max-width: 422px){
+
+  @media screen and (max-width: 422px) {
     flex-direction: column;
     gap: 1px;
     align-items: center;
   }
-  
+
 `
 
 export const LogoWrapper = styled.div`
@@ -58,8 +66,18 @@ export const LogoWrapper = styled.div`
   align-items: center;
   margin-bottom: 20px;
 
+  @media screen and (max-width: 490px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   img {
     width: 120px;
+
+    @media screen and (max-width: 490px) {
+      display: none;
+    }
   }
 
   h3 {

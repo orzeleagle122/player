@@ -24,6 +24,10 @@ export const Wrapper = styled.div`
     height: 55px;
     padding-top: 5px;
     padding-bottom: 5px;
+    
+    @media screen and (max-width:400px){
+      height: 35px;
+    }
   }
 
   svg {
@@ -45,6 +49,7 @@ export const AccountWrapper = styled.div`
     border-radius: 50%;
     width: 40px;
     height: auto;
+    
   }
 `
 
@@ -52,6 +57,10 @@ export const UserData = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  
+  @media screen and (max-width:400px){
+    display: none;
+  } 
 
   p {
     font-weight: normal;

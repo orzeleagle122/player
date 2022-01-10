@@ -14,6 +14,11 @@ export const Container = styled.div`
   box-shadow: ${({openMenu}) => openMenu ? "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset" : "none"};
   display: flex;
   flex-direction: column;
+  
+  @media screen and (max-width: 400px){
+    width: 100%;
+  }
+  
 `;
 
 export const CloseMenuWrapper = styled.div`

@@ -6,6 +6,10 @@ export const GridWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
+export const Wrapper = styled.div`
+  padding: 0 10px;
+`;
+
 
 
 

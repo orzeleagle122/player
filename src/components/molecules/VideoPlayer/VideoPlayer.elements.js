@@ -13,5 +13,9 @@ export const Container = styled.main`
     font-weight: bold;
   }
 
+  h1, p {
+    padding: 0 20px;
+  }
+
 `;
 
