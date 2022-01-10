@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {Login, Main, SplashScreen} from "./pages";
 import {useDispatch, useSelector} from "react-redux";
-import {getIsFetching, getIsLogin, keepLoginAction, setIsFetching} from "./redux/account/userSlice";
+import {getIsFetching, getIsLogin, keepLoginAction} from "./redux/slices/userSlice";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -11,9 +11,9 @@ const App = () => {
     const isFetching = useSelector(getIsFetching);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        dispatch(keepLoginAction(token));
-    }, [isLogin])
+        const refreshToken = localStorage.getItem("refreshToken");
+        dispatch(keepLoginAction(refreshToken));
+    }, [isLogin,dispatch])
 
     if (isFetching) return <SplashScreen/>
 

@@ -1,44 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ReactPlayer from 'react-player'
-import {Container, GridWrapper} from "./VideoPlayer.elements";
-import {VideoCart} from "../../index";
+import {Container} from "./VideoPlayer.elements";
 import useScrollPosition from "../../../hooks/useScrollPosition";
+import {useSelector} from "react-redux";
+import {getCurrentVideo, getErrorMessage} from "../../../redux/slices/movieSlice";
 
 const VideoPlayer = () => {
     const scrollPosition = useScrollPosition();
-
+    const currentVideo = useSelector(getCurrentVideo);
+    const errorMessage = useSelector(getErrorMessage);
 
     return (
         <Container>
             <ReactPlayer
-                url='https://cdn.videvo.net/videvo_files/video/free/2020-05/large_watermarked/3d_ocean_1590675653_preview.mp4'
+                url={currentVideo.ContentUrl}
+                playing={true}
                 controls={true} width={`100%`}
                 pip={scrollPosition >= 300}
                 height="auto"/>
+            <h2>{errorMessage}</h2>
             <br/>
             <br/>
-            <h1>Tytuł filmu</h1>
+            <h1>{currentVideo.Title}</h1>
             <p>
-                Praesent placerat egestas faucibus. Cras vehicula, libero vestibulum volutpat finibus, nibh magna
-                gravida
-                velit, eget mollis ligula lorem convallis urna. Sed a posuere augue, non commodo massa. Curabitur
-                eleifend ullamcorper odio, non posuere sapien imperdiet gravida. Quisque sed nulla nec lorem cursus
-                iaculis ac in justo. Aliquam sed suscipit elit. Sed viverra dictum tortor quis dapibus. Nulla dui
-                lectus, tristique nec erat a, scelerisque pellentesque mi. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Nullam ultrices faucibus tellus, vitae aliquet nisi aliquam sed. Integer ornare, lectus
-                vel maximus molestie, orci ante ornare risus, ac eleifend ligula massa porta lacus. Curabitur eget lacus
-                in tellus commodo hendrerit id vitae turpis. Vestibulum sit amet mollis urna, eu finibus magna. Aenean
-                fermentum ac mauris non congue. Pellentesque vel purus lorem.Praesent placerat egestas faucibus. Cras
-                vehicula, libero vestibulum volutpat finibus, nibh magna gravida
-                velit, eget mollis ligula lorem convallis urna. Sed a posuere augue, non commodo massa. Curabitur
-                eleifend ullamcorper odio, non posuere sapien imperdiet gravida. Quisque sed nulla nec lorem cursus
-                iaculis ac in justo. Aliquam sed suscipit elit. Sed viverra dictum tortor quis dapibus. Nulla dui
-                lectus, tristique nec erat a, scelerisque pellentesque mi. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Nullam ultrices faucibus tellus, vitae aliquet nisi aliquam sed. Integer ornare, lectus
-                vel maximus molestie, orci ante ornare risus, ac eleifend ligula massa porta lacus. Curabitur eget lacus
-                in tellus commodo hendrerit id vitae turpis. Vestibulum sit amet mollis urna, eu finibus magna. Aenean
-                fermentum ac mauris non congue. Pellentesque vel purus lorem.Praesent placerat egestas faucibus. Cras
-                vehicula, libero vestibulum volutpat finibus, nibh magna gravida
+                {currentVideo.Description}
             </p>
         </Container>
     );

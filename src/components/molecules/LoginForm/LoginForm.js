@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useFormik} from "formik";
-import {getIsError, getIsFetching, sendRequest, userLoginAction} from "../../../redux/account/userSlice";
+import {getIsError, userLoginAction} from "../../../redux/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Input} from "../../index";
 import {FormWrapper} from "./LoginForm.elements";
@@ -11,8 +11,8 @@ const LoginForm = () => {
     const isError = useSelector(getIsError);
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: '',
+            email: 'test@bsgroup.eu',
+            password: 'Test12!@',
         },
         onSubmit: (values) => {
             setIsLoading(true);
@@ -46,7 +46,8 @@ const LoginForm = () => {
                 />
                 <Button type="submit" disabled={isLoading}>
                     {isLoading
-                        ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}/> Logging in</>
+                        ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}
+                                 alr={`loader`}/> Logging in</>
                         : "Log in"
                     }
                 </Button>

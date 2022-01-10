@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {AccountWrapper, Container, UserData, Wrapper} from "./Navbar.elements";
-import {AiOutlineMenu} from "react-icons/ai";
-import {Button} from "../../index";
 import {NavbarContainer} from "../../../theme/NavbarContainer";
-import useScrollPosition from "../../../hooks/useScrollPosition";
+import {useSelector} from "react-redux";
+import {getUser} from "../../../redux/slices/userSlice";
 
 const Navbar = ({setOpenMenu}) => {
+    const userData=useSelector(getUser);
     return (
         <Container>
             <NavbarContainer>
@@ -14,8 +14,8 @@ const Navbar = ({setOpenMenu}) => {
                          alt={`logo`}/>
                     <AccountWrapper onClick={() => setOpenMenu(prevState => !prevState)}>
                         <UserData>
-                            <p>Patryk Orłowski</p>
-                            <span>License: TRIAL</span>
+                            <p>{userData.FullName}</p>
+                            <span>{userData.Email}</span>
                         </UserData>
                         <img src="/assets/images/1.jpg" alt="Avatar"/>
                     </AccountWrapper>

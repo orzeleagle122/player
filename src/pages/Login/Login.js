@@ -4,13 +4,8 @@ import {Button, SocialButton, LoginForm} from "../../components";
 import {Navigate} from "react-router-dom";
 import {
     continueAsGuestAction,
-    errorLoginAction,
-    getIsError,
-    getIsFetching,
-    getIsLogin, keepLoginAction,
-    sendRequest,
-    userLoginAction
-} from "../../redux/account/userSlice";
+    getIsLogin
+} from "../../redux/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {AiFillFacebook, AiFillApple} from "react-icons/ai";
 
@@ -19,7 +14,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const isLogin = useSelector(getIsLogin);
 
-    const [isLoading,setIsLoading]=useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
 
@@ -58,10 +53,12 @@ const Login = () => {
                     }}>Register</Button>
                     <Button secondary isBig onClick={() => {
                         setIsLoading(true);
-                        dispatch(continueAsGuestAction()).finally(()=>setIsLoading(false))}
+                        dispatch(continueAsGuestAction()).finally(() => setIsLoading(false))
+                    }
                     }>
                         {isLoading
-                            ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}/> Logging as guest</>
+                            ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`} alt={`loader`}/> Logging as
+                                guest</>
                             : "Continue as guest"
                         }
                     </Button>

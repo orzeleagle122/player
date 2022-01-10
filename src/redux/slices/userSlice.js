@@ -1,8 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-// TODO: utrzymać zalogowanie po refrashu
-//TODO: logout
-// TODO: Zmiana try catch na promise
 
 const initialState = {
     AuthorizationToken: {
@@ -18,8 +15,9 @@ const initialState = {
         Initials: "",
         Products: [],
     },
-    isLogin: true,
-    isFetching: false,
+    streamPermission: '',
+    isLogin: false,
+    isFetching: true,
     isError: false,
 }
 
@@ -28,10 +26,10 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         userLogin: (state, action) => {
-            return {...state, isLogin: true}
+            return {isLogin: true, isError: false, streamPermission: 'MAIN', ...action.payload}
         },
         continueAsGuest: (state, action) => {
-            return {...state, isLogin: true}
+            return {isLogin: true, isError: false, streamPermission: 'TRIAL', ...action.payload}
         },
         sendRequest: (state) => {
             return {...state, isError: false}
@@ -51,6 +49,8 @@ export const userSlice = createSlice({
 export const getIsLogin = state => state.user.isLogin;
 export const getIsFetching = state => state.user.isFetching;
 export const getIsError = state => state.user.isError;
+export const getUserPermission = state => state.user.streamPermission;
+export const getUser = state => state.user.User;
 
 export const {userLogin, continueAsGuest, sendRequest, errorLogin, keepLogin, setIsFetching} = userSlice.actions;
 
@@ -72,11 +72,12 @@ export const userLoginAction = (Username, Password) => async (dispatch) => {
             }
         })
         .then(response => {
-            console.log(response);
-            dispatch(userLogin(response));
-            localStorage.setItem("token", "TOKEN Z REPONSE");
+            const {data} = response;
+            dispatch(userLogin(data));
+            localStorage.setItem("token", data.AuthorizationToken.Token);
+            localStorage.setItem("refreshToken", data.AuthorizationToken.RefreshToken);
         })
-        .catch(() => dispatch(errorLoginAction()));
+        .catch(() => dispatch(errorLogin()));
 }
 
 export const continueAsGuestAction = () => async (dispatch) => {
@@ -92,9 +93,10 @@ export const continueAsGuestAction = () => async (dispatch) => {
             }
         })
         .then(response => {
-            console.log(response);
-            dispatch(userLogin(response));
-            localStorage.setItem("token", "TOKEN Z REPONSE");
+            const {data} = response;
+            console.log(data);
+            dispatch(continueAsGuest(data));
+            localStorage.setItem("token", data.AuthorizationToken.Token);
         })
         .catch(() => dispatch(errorLogin()));
 }
@@ -103,16 +105,19 @@ export const errorLoginAction = () => async (dispatch) => {
     dispatch(errorLogin());
 }
 
-export const keepLoginAction = (token) => async (dispatch) => {
-    if (!token) {
+export const keepLoginAction = (refreshToken) => async (dispatch) => {
+    if (!refreshToken) {
         dispatch(setIsFetching(false));
         return;
     }
-    await axios.post(`${APIURL}/Authorization/${token}`,
+    await axios.post(`${APIURL}/Authorization/RefreshToken`,
         {
+            Token: refreshToken,
             Device: {
                 PlatformCode: "WEB",
-                Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                Name: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                FirebaseToken: "string",
+                DpiCode: "string",
             }
         }, {
             headers: {
@@ -120,8 +125,8 @@ export const keepLoginAction = (token) => async (dispatch) => {
             }
         })
         .then(response => {
-            console.log(response);
-            dispatch(keepLogin(response))
+            const {data} = response
+            dispatch(keepLogin(data))
         })
         .catch(error => {
             console.log(error);
