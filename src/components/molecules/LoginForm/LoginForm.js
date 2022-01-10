@@ -46,7 +46,7 @@ const LoginForm = () => {
                 />
                 <Button type="submit" disabled={isLoading}>
                     {isLoading
-                        ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}
+                        ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`} alt={`loader`}
                                  alr={`loader`}/> Logging in</>
                         : "Log in"
                     }
