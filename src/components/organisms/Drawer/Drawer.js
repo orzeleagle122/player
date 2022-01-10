@@ -5,6 +5,7 @@ import {Button} from "../../index";
 import {BsGear} from "react-icons/bs";
 import {useSelector, useDispatch} from "react-redux";
 import {getUser, logOutAction} from "../../../redux/slices/userSlice";
+import PropTypes from 'prop-types';
 
 const Drawer = ({openMenu, setOpenMenu}) => {
     const userData = useSelector(getUser);
@@ -33,5 +34,10 @@ const Drawer = ({openMenu, setOpenMenu}) => {
         </Container>
     );
 };
+
+Drawer.propTypes = {
+    setOpenMenu: PropTypes.func.isRequired,
+    openMenu: PropTypes.bool,
+}
 
 export default Drawer;

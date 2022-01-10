@@ -4,8 +4,9 @@ import {Card, CardContent} from "./VideoCart.elements";
 import {useDispatch, useSelector} from "react-redux";
 import {getMediaPlayInfoAction} from "../../../redux/slices/movieSlice";
 import {getUserPermission} from "../../../redux/slices/userSlice";
+import PropTypes from 'prop-types';
 
-const VideoCart = ({title, desc, img, id}) => {
+const VideoCart = ({title, img, id}) => {
 
     const dispatch = useDispatch();
     const permission = useSelector(getUserPermission);
@@ -25,10 +26,16 @@ const VideoCart = ({title, desc, img, id}) => {
             <FaPlay/>
             <CardContent>
                 <h3>{title}</h3>
-                {/*<p>{desc}</p>*/}
             </CardContent>
         </Card>
     );
 };
+
+VideoCart.propTypes={
+    title: PropTypes.string.isRequired,
+    desc: PropTypes.string,
+    img: PropTypes.array,
+    id: PropTypes.number.isRequired
+}
 
 export default VideoCart;

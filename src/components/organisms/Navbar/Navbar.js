@@ -3,9 +3,10 @@ import {AccountWrapper, Container, UserData, Wrapper} from "./Navbar.elements";
 import {NavbarContainer} from "../../../theme/NavbarContainer";
 import {useSelector} from "react-redux";
 import {getUser} from "../../../redux/slices/userSlice";
+import PropTypes from 'prop-types';
 
 const Navbar = ({setOpenMenu}) => {
-    const userData=useSelector(getUser);
+    const userData = useSelector(getUser);
     return (
         <Container>
             <NavbarContainer>
@@ -24,5 +25,9 @@ const Navbar = ({setOpenMenu}) => {
         </Container>
     );
 };
+
+Navbar.propTypes = {
+    setOpenMenu: PropTypes.func.isRequired,
+}
 
 export default Navbar;
