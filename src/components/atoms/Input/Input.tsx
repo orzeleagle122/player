@@ -1,5 +1,10 @@
-import React from 'react';
+import React, {FC, ReactChild, ReactNode} from 'react';
 import styled from 'styled-components'
+
+interface AppProps {
+    children: ReactChild,
+    rest: ReactNode,
+}
 
 const InputWrapper = styled.input`
   padding: 10px 20px;
@@ -16,8 +21,8 @@ const InputWrapper = styled.input`
   }
 `;
 
-const Input = (props) => {
-    return <InputWrapper {...props}>{props.children}</InputWrapper>;
+const Input: FC<AppProps> = ({children, ...rest}) => {
+    return <InputWrapper {...rest}>{children}</InputWrapper>;
 };
 
 export default Input;

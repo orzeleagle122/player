@@ -1,15 +1,32 @@
 import React, {useState} from 'react';
-import {useFormik} from "formik";
+import {FormikConfig, useFormik} from "formik";
 import {getIsError, userLoginAction} from "../../../redux/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Input} from "../../index";
 import {FormWrapper} from "./LoginForm.elements";
 
+interface IInitialValue {
+    email: string,
+    password: string,
+}
+
+interface IFormik {
+    id: string,
+    name: string,
+    label: string,
+    initialValue: FormikConfig<IFormik>,
+    email: string,
+    password: string,
+    // onChange: (string) => void;
+    placeholder: string
+}
+
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
     const isError = useSelector(getIsError);
-    const formik = useFormik({
+
+    const formik = useFormik<FormikConfig<any>>({
         initialValues: {
             email: 'test@bsgroup.eu',
             password: 'Test12!@',
@@ -26,7 +43,6 @@ const LoginForm = () => {
             <form onSubmit={formik.handleSubmit}>
                 {isError && <p>Something went wrong...</p>}
                 <Input
-                    fullWidth
                     id="email"
                     name="email"
                     label="Email"
@@ -35,7 +51,6 @@ const LoginForm = () => {
                     placeholder={`Account email`}
                 />
                 <Input
-                    fullWidth
                     id="password"
                     name="password"
                     label="Password"

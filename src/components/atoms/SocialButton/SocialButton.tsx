@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {FC, ReactChild, ReactNode} from 'react';
 import styled, {css} from 'styled-components'
 
-const ButtonWrapper = styled.button`
+interface ISocialBtn {
+    facebook?: boolean,
+    apple?: boolean,
+}
+
+interface AppProps {
+    children: ReactChild,
+    rest: ReactNode
+}
+
+const ButtonWrapper = styled.button<ISocialBtn>`
   text-transform: uppercase;
   height: 38px;
   width: 100%;
@@ -37,8 +47,8 @@ const ButtonWrapper = styled.button`
 
 `;
 
-const SocialButton = (props) => {
-    return <ButtonWrapper {...props}>{props.children}</ButtonWrapper>;
+const SocialButton: FC<AppProps> = ({children, ...rest}) => {
+    return <ButtonWrapper {...rest}>{children}</ButtonWrapper>;
 };
 
 export default SocialButton;
