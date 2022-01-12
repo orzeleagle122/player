@@ -1,4 +1,4 @@
-import React, {FC, ReactChild, ReactNode} from 'react';
+import React, {ButtonHTMLAttributes, FC, ReactChild, ReactNode} from 'react';
 import styled, {css} from 'styled-components'
 
 interface ISocialBtn {
@@ -6,7 +6,7 @@ interface ISocialBtn {
     apple?: boolean,
 }
 
-interface AppProps {
+interface AppProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactChild,
     rest: ReactNode
 }

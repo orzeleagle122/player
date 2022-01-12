@@ -1,5 +1,6 @@
-import React, {FC, ReactChild, ReactNode} from 'react';
+import React, {ButtonHTMLAttributes, FC, ReactChild, ReactNode} from 'react';
 import styled, {css} from 'styled-components'
+//TODO: jak aplikacja sie wlaczy sprzedzic czy rest?: ReactNode jest tu potrzebny
 
 interface IBtn {
     secondary?: boolean,
@@ -7,10 +8,10 @@ interface IBtn {
     isSmall?: boolean,
 }
 
-interface AppProps {
+//interface AppProps extends React.ComponentPropsWithoutRef<'button'> {
+interface AppProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactChild,
     rest?: ReactNode,
-    type?:string,
 }
 
 const ButtonWrapper = styled.button<IBtn>`
@@ -53,7 +54,7 @@ const ButtonWrapper = styled.button<IBtn>`
 
 `;
 
-const Button:FC<AppProps> = ({children,...rest}) => {
+const Button: FC<AppProps> = ({children, ...rest}) => {
     return <ButtonWrapper {...rest}>{children}</ButtonWrapper>;
 };
 

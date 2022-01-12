@@ -1,35 +1,21 @@
 import React, {useState} from 'react';
-import {FormikConfig, useFormik} from "formik";
+import {FormikProps, useFormik} from "formik";
 import {getIsError, userLoginAction} from "../../../redux/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Input} from "../../index";
 import {FormWrapper} from "./LoginForm.elements";
 
-interface IInitialValue {
-    email: string,
-    password: string,
-}
 interface IValue {
     email: string,
     password: string,
 }
-interface IFormik {
-    id: string,
-    name: string,
-    label: string,
-    // initialValue: FormikConfig<IFormik>,
-    onChange: (value:IValue) => void;
-    placeholder: string
-}
-
-
 
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
     const isError = useSelector(getIsError);
 
-    const formik = useFormik<FormikConfig<any>>({
+    const formik:FormikProps<IValue> = useFormik<IValue>({
         initialValues: {
             email: 'test@bsgroup.eu',
             password: 'Test12!@',
@@ -66,7 +52,7 @@ const LoginForm = () => {
                 <Button type="submit" disabled={isLoading}>
                     {isLoading
                         ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`} alt={`loader`}
-                                 alr={`loader`}/> Logging in</>
+                        /> Logging in</>
                         : "Log in"
                     }
                 </Button>
