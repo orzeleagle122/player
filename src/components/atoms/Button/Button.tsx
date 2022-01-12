@@ -9,7 +9,8 @@ interface IBtn {
 
 interface AppProps {
     children: ReactChild,
-    rest: ReactNode,
+    rest?: ReactNode,
+    type?:string,
 }
 
 const ButtonWrapper = styled.button<IBtn>`

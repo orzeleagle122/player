@@ -4,6 +4,7 @@ import styled from 'styled-components'
 interface AppProps {
     children: ReactChild,
     rest: ReactNode,
+    id?:string,
 }
 
 const InputWrapper = styled.input`

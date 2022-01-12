@@ -9,17 +9,20 @@ interface IInitialValue {
     email: string,
     password: string,
 }
-
+interface IValue {
+    email: string,
+    password: string,
+}
 interface IFormik {
     id: string,
     name: string,
     label: string,
-    initialValue: FormikConfig<IFormik>,
-    email: string,
-    password: string,
-    // onChange: (string) => void;
+    // initialValue: FormikConfig<IFormik>,
+    onChange: (value:IValue) => void;
     placeholder: string
 }
+
+
 
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +40,7 @@ const LoginForm = () => {
                 .finally(() => setIsLoading(false));
         },
     });
+
 
     return (
         <FormWrapper>
