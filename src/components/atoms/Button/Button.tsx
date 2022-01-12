@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styled, {css} from 'styled-components'
 
-const ButtonWrapper = styled.button`
+interface IBtn {
+    secondary: boolean,
+    isBig: boolean,
+    isSmall: boolean,
+}
+
+interface AppProps {
+    rest: any,
+    children: any
+}
+
+const ButtonWrapper = styled.button<IBtn>`
   height: 38px;
   width: 156px;
   padding: 5px 10px;
@@ -41,8 +52,8 @@ const ButtonWrapper = styled.button`
 
 `;
 
-const Button = (props) => {
-    return <ButtonWrapper {...props}>{props.children}</ButtonWrapper>;
+const Button:FC<AppProps> = ({rest,children}) => {
+    return <ButtonWrapper {...rest}>{children}</ButtonWrapper>;
 };
 
 export default Button;

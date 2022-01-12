@@ -1,11 +1,11 @@
 import './App.css';
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {Login, Main, SplashScreen} from "./pages";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsFetching, getIsLogin, keepLoginAction} from "./redux/slices/userSlice";
 
-const App = () => {
+const App:FC = () => {
     const dispatch = useDispatch();
     const isLogin = useSelector(getIsLogin);
     const isFetching = useSelector(getIsFetching);
