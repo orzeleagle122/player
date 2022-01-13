@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
+//opacity: ${({isTransparent}) => (!isTransparent ? '1' : '0.5')};
 export const Container = styled.div`
   width: 100%;
   height: 70px;
   background-color: rgba(14, 22, 31, 0.7);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    //opacity: ${({isTransparent}) => (!isTransparent ? '1' : '0.5')};
+
   transition: 0.2s ease-in-out;
   position: fixed;
   backdrop-filter: blur(5px);
@@ -24,8 +25,8 @@ export const Wrapper = styled.div`
     height: 55px;
     padding-top: 5px;
     padding-bottom: 5px;
-    
-    @media screen and (max-width:400px){
+
+    @media screen and (max-width: 400px) {
       height: 35px;
     }
   }
@@ -49,7 +50,7 @@ export const AccountWrapper = styled.div`
     border-radius: 50%;
     width: 40px;
     height: auto;
-    
+
   }
 `
 
@@ -57,10 +58,10 @@ export const UserData = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  
-  @media screen and (max-width:400px){
+
+  @media screen and (max-width: 400px) {
     display: none;
-  } 
+  }
 
   p {
     font-weight: normal;

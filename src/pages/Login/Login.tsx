@@ -8,10 +8,11 @@ import {
 } from "../../redux/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {AiFillFacebook, AiFillApple} from "react-icons/ai";
+import {useAppDispatch} from "../../store";
 
 const Login = () => {
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isLogin = useSelector(getIsLogin);
 
     const [isLoading, setIsLoading] = useState(false)
@@ -33,10 +34,14 @@ const Login = () => {
                     <h3>Welcome to Player!</h3>
                 </LogoWrapper>
 
-                <SocialButton apple onClick={() => alert('only for demonstration')}> <AiFillApple/> Sign up with
-                    apple</SocialButton>
-                <SocialButton facebook onClick={() => alert('only for demonstration')}><AiFillFacebook/> Sign up with
-                    facebook</SocialButton>
+                <SocialButton apple={true} onClick={() => alert('only for demonstration')}><><AiFillApple/> Sign up with
+                    apple
+                </>
+                </SocialButton>
+                <SocialButton facebook onClick={() => alert('only for demonstration')}><><AiFillFacebook/> Sign up with
+                    facebook
+                </>
+                </SocialButton>
 
                 <Separator>
                     <hr/>
@@ -57,7 +62,8 @@ const Login = () => {
                     }
                     }>
                         {isLoading
-                            ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`} alt={`loader`}/> Logging as
+                            ? <><img src={`/assets/images/blue-loading-gif-transparent.gif`} width={`20px`}
+                                     alt={`loader`}/> Logging as
                                 guest</>
                             : "Continue as guest"
                         }

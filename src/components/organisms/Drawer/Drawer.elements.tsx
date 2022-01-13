@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface IDrawerContainer {
+    openMenu:boolean,
+}
+
+export const Container = styled.div<IDrawerContainer>`
   width: 400px;
   position: fixed;
     //display: ${({openMenu}) => openMenu ? "initial" : "none"};

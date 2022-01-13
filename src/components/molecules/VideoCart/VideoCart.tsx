@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {FaPlay} from "react-icons/fa";
 import {Card, CardContent} from "./VideoCart.elements";
 import {useDispatch, useSelector} from "react-redux";
 import {getMediaPlayInfoAction} from "../../../redux/slices/movieSlice";
 import {getUserPermission} from "../../../redux/slices/userSlice";
 import PropTypes from 'prop-types';
+import {useAppDispatch} from "../../../store";
+import {array} from "yup";
 
-const VideoCart = ({title, img, id}) => {
+interface IVideoCart {
+    title: string,
+    img: [{
+        ImageTypeCode:string,
+        Url:string
+    }],
+    id: number,
+}
 
-    const dispatch = useDispatch();
+const VideoCart: FC<IVideoCart> = ({title, img, id}) => {
+
+    const dispatch = useAppDispatch();
     const permission = useSelector(getUserPermission);
 
     const frameImg = img.filter(image => image.ImageTypeCode === "FRAME" ? image.Url : false);
@@ -31,11 +42,5 @@ const VideoCart = ({title, img, id}) => {
     );
 };
 
-VideoCart.propTypes={
-    title: PropTypes.string.isRequired,
-    desc: PropTypes.string,
-    img: PropTypes.array,
-    id: PropTypes.number.isRequired
-}
 
 export default VideoCart;

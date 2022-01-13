@@ -10,11 +10,19 @@ import {
     getMediaTopRatedListAction,
     getRecommendedMedias, getTopRatedMedias
 } from "../../redux/slices/movieSlice";
+import {useAppDispatch} from "../../store";
+import {number} from "yup";
+
+interface IItem {
+    id: number,
+    title: string,
+    img: []
+}
 
 const Main = () => {
     const [openMenu, setOpenMenu] = useState(false)
     const isLogin = useSelector(getIsLogin);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const getRecommendedMedia = useSelector(getRecommendedMedias);
     const getTopRatedMedia = useSelector(getTopRatedMedias);
     const [isLoadingRecommended, setIsLoadingRecommended] = useState(true);
@@ -38,18 +46,22 @@ const Main = () => {
                 <Wrapper>
                     <h1>Recommended for You</h1>
                     <GridWrapper>
-                        {isLoadingRecommended ? <Loader/> : getRecommendedMedia?.Entities?.map(item => <VideoCart
-                            key={item.Id} id={item.Id}
-                            title={item.Title}
-                            img={item.Images}/>)}
+                        {isLoadingRecommended ?
+                            <Loader/> : getRecommendedMedia?.Entities?.map((item: { Id: number; Title: string; Images: [{ ImageTypeCode: string; Url: string; }]; }) =>
+                                <VideoCart
+                                    key={item.Id} id={item.Id}
+                                    title={item.Title}
+                                    img={item.Images}/>)}
 
                     </GridWrapper>
                     <h1>Top Rated</h1>
                     <GridWrapper>
-                        {isLoadingTopRated ? <Loader/> : getTopRatedMedia?.Entities?.map(item => <VideoCart
-                            key={item.Id} id={item.Id}
-                            title={item.Title}
-                            img={item.Images}/>)}
+                        {isLoadingTopRated ?
+                            <Loader/> : getTopRatedMedia?.Entities?.map((item: { Id: number; Title: string; Images: [{ ImageTypeCode: string; Url: string; }]; }) =>
+                                <VideoCart
+                                    key={item.Id} id={item.Id}
+                                    title={item.Title}
+                                    img={item.Images}/>)}
                     </GridWrapper>
                     {/*<CarouselSlider/>*/}
                 </Wrapper>

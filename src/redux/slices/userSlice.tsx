@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {errorMessage} from "./movieSlice";
+import {RootState} from "../../store";
 
 const initialState = {
     AuthorizationToken: {
@@ -44,17 +45,24 @@ export const userSlice = createSlice({
         setIsFetching: (state, action) => {
             state.isFetching = action.payload;
         },
-        logOut: (state, action) => {
-            return {AuthorizationToken: {}, User: {}, isLogin: false, isFetching: true, streamPermission: ''}
+        logOut: () => {
+            return {
+                AuthorizationToken: initialState.AuthorizationToken,
+                User: initialState.User,
+                isLogin: false,
+                isFetching: true,
+                streamPermission: '',
+                isError: false,
+            }
         }
     }
 })
 
-export const getIsLogin = state => state.user.isLogin;
-export const getIsFetching = state => state.user.isFetching;
-export const getIsError = state => state.user.isError;
-export const getUserPermission = state => state.user.streamPermission;
-export const getUser = state => state.user.User;
+export const getIsLogin = (state: RootState) => state.user.isLogin;
+export const getIsFetching = (state: RootState) => state.user.isFetching;
+export const getIsError = (state: RootState) => state.user.isError;
+export const getUserPermission = (state: RootState) => state.user.streamPermission;
+export const getUser = (state: RootState) => state.user.User;
 
 export const {
     userLogin,
@@ -69,7 +77,7 @@ export const {
 // actions
 const APIURL = 'https://thebetter.bsgroup.eu';
 
-export const userLoginAction = (Username, Password) => async (dispatch) => {
+export const userLoginAction = (Username: string, Password: string) => async (dispatch: any) => {
     return await axios.post(`${APIURL}/Authorization/SignIn`,
         {
             Username,
@@ -92,7 +100,7 @@ export const userLoginAction = (Username, Password) => async (dispatch) => {
         .catch(() => dispatch(errorLogin()));
 }
 
-export const continueAsGuestAction = () => async (dispatch) => {
+export const continueAsGuestAction = () => async (dispatch: any) => {
     return await axios.post(`${APIURL}/Authorization/SignIn`,
         {
             Device: {
@@ -112,11 +120,11 @@ export const continueAsGuestAction = () => async (dispatch) => {
         .catch(() => dispatch(errorLogin()));
 }
 
-export const errorLoginAction = () => async (dispatch) => {
+export const errorLoginAction = () => async (dispatch: any) => {
     dispatch(errorLogin());
 }
 
-export const keepLoginAction = (refreshToken) => async (dispatch) => {
+export const keepLoginAction = (refreshToken: string) => async (dispatch: any) => {
     if (!refreshToken) {
         dispatch(setIsFetching(false));
         return;
@@ -147,7 +155,7 @@ export const keepLoginAction = (refreshToken) => async (dispatch) => {
         .finally(() => dispatch(setIsFetching(false)))
 }
 
-export const logOutAction = () => async (dispatch) => {
+export const logOutAction = () => async (dispatch: any) => {
 
     const token = localStorage.getItem("token");
     await axios.post(`${APIURL}/Authorization/SignOut`,

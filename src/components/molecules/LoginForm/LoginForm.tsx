@@ -4,6 +4,7 @@ import {getIsError, userLoginAction} from "../../../redux/slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Input} from "../../index";
 import {FormWrapper} from "./LoginForm.elements";
+import {useAppDispatch} from "../../../store";
 
 interface IValue {
     email: string,
@@ -12,7 +13,7 @@ interface IValue {
 
 const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isError = useSelector(getIsError);
 
     const formik:FormikProps<IValue> = useFormik<IValue>({

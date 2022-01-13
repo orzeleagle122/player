@@ -4,14 +4,16 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {Login, Main, SplashScreen} from "./pages";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsFetching, getIsLogin, keepLoginAction} from "./redux/slices/userSlice";
+import {useAppDispatch} from "./store";
 
 const App:FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isLogin = useSelector(getIsLogin);
     const isFetching = useSelector(getIsFetching);
 
     useEffect(() => {
         const refreshToken = localStorage.getItem("refreshToken");
+        // @ts-ignore
         dispatch(keepLoginAction(refreshToken));
     }, [isLogin,dispatch])
 

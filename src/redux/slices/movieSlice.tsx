@@ -1,7 +1,19 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from 'axios';
+import {RootState} from "../../store";
 
-const initialState = {
+export interface IInitialState {
+    movieList: {
+        recommended: any,
+        topRated: any,
+    }
+    currentPlay:any,
+    errorMessage:string,
+    isFetching:boolean
+}
+
+
+const initialState:IInitialState = {
     movieList: {
         recommended: {},
         topRated: {},
@@ -34,17 +46,17 @@ export const movieSlice = createSlice({
 })
 
 export const {getMediaRecommendedList, getMediaPlayInfo, getMediaTopRatedList, errorMessage} = movieSlice.actions
-export const getRecommendedMedias = state => state.movie.movieList.recommended;
-export const getTopRatedMedias = state => state.movie.movieList.topRated;
-export const getCurrentVideo = state => state.movie.currentPlay;
-export const getErrorMessage = state => state.movie.errorMessage;
+export const getRecommendedMedias = (state:RootState) => state.movie.movieList.recommended;
+export const getTopRatedMedias = (state:RootState)  => state.movie.movieList.topRated;
+export const getCurrentVideo = (state:RootState)  => state.movie.currentPlay;
+export const getErrorMessage = (state:RootState)  => state.movie.errorMessage;
 
 
 // actions
 
 const APIURL = 'https://thebetter.bsgroup.eu';
 
-export const getMediaRecommendedListAction = (token) => async (dispatch) => {
+export const getMediaRecommendedListAction = (token:string) => async (dispatch: (arg0: { payload: any; type: string; }) => void) => {
     return await axios.post(`${APIURL}/Media/GetMediaList`,
         {
             MediaListId: 2,
@@ -67,7 +79,7 @@ export const getMediaRecommendedListAction = (token) => async (dispatch) => {
         .catch(err => console.log(err));
 }
 
-export const getMediaTopRatedListAction = (token) => async (dispatch) => {
+export const getMediaTopRatedListAction = (token:string) => async (dispatch: (arg0: { payload: any; type: string; }) => void) => {
     return await axios.post(`${APIURL}/Media/GetMediaList`,
         {
             MediaListId: 6,
@@ -90,7 +102,12 @@ export const getMediaTopRatedListAction = (token) => async (dispatch) => {
         .catch(err => console.log(err));
 }
 
-export const getMediaPlayInfoAction = (id, permission) => async (dispatch) => {
+interface Iplay{
+    id:number,
+    permission:string
+}
+
+export const getMediaPlayInfoAction = (id:number, permission:string) => async (dispatch: (arg0: { payload: any; type: string; }) => void) => {
     dispatch(errorMessage(""));
     const token = localStorage.getItem("token");
     await axios.post(`${APIURL}/Media/GetMediaPlayInfo`,

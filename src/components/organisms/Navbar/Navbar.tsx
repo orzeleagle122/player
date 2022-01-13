@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {AccountWrapper, Container, UserData, Wrapper} from "./Navbar.elements";
 import {NavbarContainer} from "../../../theme/NavbarContainer";
 import {useSelector} from "react-redux";
 import {getUser} from "../../../redux/slices/userSlice";
 import PropTypes from 'prop-types';
 
-const Navbar = ({setOpenMenu}) => {
+interface INavbar<T> {
+    setOpenMenu: (cb: (value: T) => T) => void;
+}
+
+const Navbar: FC<INavbar<boolean>> = ({setOpenMenu}) => {
     const userData = useSelector(getUser);
     return (
         <Container>

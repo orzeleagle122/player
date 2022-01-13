@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {CgClose} from "react-icons/cg";
 import {DrawerContainer, CloseMenuWrapper, Container, ProfileContainer, ProfileInformation} from "./Drawer.elements";
 import {Button} from "../../index";
 import {BsGear} from "react-icons/bs";
 import {useSelector, useDispatch} from "react-redux";
 import {getUser, logOutAction} from "../../../redux/slices/userSlice";
-import PropTypes from 'prop-types';
+import {useAppDispatch} from "../../../store";
 
-const Drawer = ({openMenu, setOpenMenu}) => {
+interface IDrawer<T> {
+    openMenu: T,
+    setOpenMenu: (cb: (value: T) => T) => void;
+}
+
+const Drawer: FC<IDrawer<boolean>> = ({openMenu, setOpenMenu}) => {
     const userData = useSelector(getUser);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <Container openMenu={openMenu}>
             <CloseMenuWrapper>
@@ -35,9 +40,5 @@ const Drawer = ({openMenu, setOpenMenu}) => {
     );
 };
 
-Drawer.propTypes = {
-    setOpenMenu: PropTypes.func.isRequired,
-    openMenu: PropTypes.bool,
-}
 
 export default Drawer;

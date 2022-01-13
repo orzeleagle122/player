@@ -1,17 +1,14 @@
 import React, {ButtonHTMLAttributes, FC, ReactChild, ReactNode} from 'react';
 import styled, {css} from 'styled-components'
 
-interface ISocialBtn {
+interface AppProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    children: ReactChild,
+    rest?: ReactNode
     facebook?: boolean,
     apple?: boolean,
 }
 
-interface AppProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: ReactChild,
-    rest: ReactNode
-}
-
-const ButtonWrapper = styled.button<ISocialBtn>`
+const ButtonWrapper = styled.button<AppProps>`
   text-transform: uppercase;
   height: 38px;
   width: 100%;
