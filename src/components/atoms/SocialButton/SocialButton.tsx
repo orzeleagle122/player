@@ -1,9 +1,7 @@
-import React, {ButtonHTMLAttributes, FC, ReactChild, ReactNode} from 'react';
+import React, {ButtonHTMLAttributes, FC} from 'react';
 import styled, {css} from 'styled-components'
 
 interface AppProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: ReactChild,
-    rest?: ReactNode
     facebook?: boolean,
     apple?: boolean,
 }

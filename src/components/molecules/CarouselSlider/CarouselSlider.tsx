@@ -4,8 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {Container, Carousel} from "./CarouselSlider.elements";
 import {VideoCart} from "../../index";
-//TODO: add props to VideoCart
-
 
 const CarouselSlider = () => {
     const settings = {

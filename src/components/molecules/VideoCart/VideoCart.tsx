@@ -1,12 +1,9 @@
 import React, {FC} from 'react';
 import {FaPlay} from "react-icons/fa";
 import {Card, CardContent} from "./VideoCart.elements";
-import {useDispatch, useSelector} from "react-redux";
 import {getMediaPlayInfoAction} from "../../../redux/slices/movieSlice";
 import {getUserPermission} from "../../../redux/slices/userSlice";
-import PropTypes from 'prop-types';
-import {useAppDispatch} from "../../../store";
-import {array} from "yup";
+import {useAppDispatch, useAppSelector} from "../../../store";
 
 interface IVideoCart {
     title: string,
@@ -20,7 +17,7 @@ interface IVideoCart {
 const VideoCart: FC<IVideoCart> = ({title, img, id}) => {
 
     const dispatch = useAppDispatch();
-    const permission = useSelector(getUserPermission);
+    const permission = useAppSelector(getUserPermission);
 
     const frameImg = img.filter(image => image.ImageTypeCode === "FRAME" ? image.Url : false);
 

@@ -1,16 +1,15 @@
 import React, {FC} from 'react';
 import {AccountWrapper, Container, UserData, Wrapper} from "./Navbar.elements";
 import {NavbarContainer} from "../../../theme/NavbarContainer";
-import {useSelector} from "react-redux";
 import {getUser} from "../../../redux/slices/userSlice";
-import PropTypes from 'prop-types';
+import {useAppSelector} from "../../../store";
 
 interface INavbar<T> {
     setOpenMenu: (cb: (value: T) => T) => void;
 }
 
 const Navbar: FC<INavbar<boolean>> = ({setOpenMenu}) => {
-    const userData = useSelector(getUser);
+    const userData = useAppSelector(getUser);
     return (
         <Container>
             <NavbarContainer>
@@ -29,9 +28,5 @@ const Navbar: FC<INavbar<boolean>> = ({setOpenMenu}) => {
         </Container>
     );
 };
-
-Navbar.propTypes = {
-    setOpenMenu: PropTypes.func.isRequired,
-}
 
 export default Navbar;

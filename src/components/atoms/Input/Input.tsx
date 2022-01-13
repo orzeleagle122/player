@@ -1,6 +1,5 @@
-import React, {FC, InputHTMLAttributes, ReactChild, ReactNode} from 'react';
+import React, {FC, InputHTMLAttributes, ReactNode} from 'react';
 import styled from 'styled-components'
-//TODO: jak aplikacja sie wlaczy sprzedzic czy rest?: ReactNode jest tu potrzebny
 
 // interface AppProps extends InputHTMLAttributes<HTMLInputElement>{
 interface AppProps extends InputHTMLAttributes<HTMLInputElement>{
@@ -11,7 +10,7 @@ interface AppProps extends InputHTMLAttributes<HTMLInputElement>{
 const InputWrapper = styled.input`
   padding: 10px 20px;
   background-color: #213349;
-  border: none;
+  border: none;ó
   font-size: 18px;
   border-radius: 16px;
   position: relative;

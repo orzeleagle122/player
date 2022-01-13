@@ -6,14 +6,13 @@ import {
     continueAsGuestAction,
     getIsLogin
 } from "../../redux/slices/userSlice";
-import {useDispatch, useSelector} from "react-redux";
 import {AiFillFacebook, AiFillApple} from "react-icons/ai";
-import {useAppDispatch} from "../../store";
+import {useAppDispatch, useAppSelector} from "../../store";
 
 const Login = () => {
 
     const dispatch = useAppDispatch();
-    const isLogin = useSelector(getIsLogin);
+    const isLogin = useAppSelector(getIsLogin);
 
     const [isLoading, setIsLoading] = useState(false)
 

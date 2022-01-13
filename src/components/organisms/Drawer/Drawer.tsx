@@ -3,9 +3,8 @@ import {CgClose} from "react-icons/cg";
 import {DrawerContainer, CloseMenuWrapper, Container, ProfileContainer, ProfileInformation} from "./Drawer.elements";
 import {Button} from "../../index";
 import {BsGear} from "react-icons/bs";
-import {useSelector, useDispatch} from "react-redux";
 import {getUser, logOutAction} from "../../../redux/slices/userSlice";
-import {useAppDispatch} from "../../../store";
+import {useAppDispatch, useAppSelector} from "../../../store";
 
 interface IDrawer<T> {
     openMenu: T,
@@ -13,7 +12,7 @@ interface IDrawer<T> {
 }
 
 const Drawer: FC<IDrawer<boolean>> = ({openMenu, setOpenMenu}) => {
-    const userData = useSelector(getUser);
+    const userData = useAppSelector(getUser);
     const dispatch = useAppDispatch();
     return (
         <Container openMenu={openMenu}>

@@ -2,20 +2,18 @@ import './App.css';
 import React, {FC, useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {Login, Main, SplashScreen} from "./pages";
-import {useDispatch, useSelector} from "react-redux";
 import {getIsFetching, getIsLogin, keepLoginAction} from "./redux/slices/userSlice";
-import {useAppDispatch} from "./store";
+import {useAppDispatch, useAppSelector} from "./store";
 
-const App:FC = () => {
+const App: FC = () => {
     const dispatch = useAppDispatch();
-    const isLogin = useSelector(getIsLogin);
-    const isFetching = useSelector(getIsFetching);
+    const isLogin = useAppSelector(getIsLogin);
+    const isFetching = useAppSelector(getIsFetching);
 
     useEffect(() => {
         const refreshToken = localStorage.getItem("refreshToken");
-        // @ts-ignore
         dispatch(keepLoginAction(refreshToken));
-    }, [isLogin,dispatch])
+    }, [isLogin, dispatch])
 
     if (isFetching) return <SplashScreen/>
 

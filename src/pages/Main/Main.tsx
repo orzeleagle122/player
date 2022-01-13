@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Navbar, VideoPlayer, Drawer, CarouselSlider, VideoCart, Footer, Loader} from "../../components";
 import {Navigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {getIsLogin} from "../../redux/slices/userSlice";
 import {ThemeContainer} from "../../theme/ThemeContainer";
 import {GridWrapper, Wrapper} from "./Main.elements";
@@ -10,21 +9,14 @@ import {
     getMediaTopRatedListAction,
     getRecommendedMedias, getTopRatedMedias
 } from "../../redux/slices/movieSlice";
-import {useAppDispatch} from "../../store";
-import {number} from "yup";
-
-interface IItem {
-    id: number,
-    title: string,
-    img: []
-}
+import {useAppDispatch, useAppSelector} from "../../store";
 
 const Main = () => {
     const [openMenu, setOpenMenu] = useState(false)
-    const isLogin = useSelector(getIsLogin);
+    const isLogin = useAppSelector(getIsLogin);
     const dispatch = useAppDispatch();
-    const getRecommendedMedia = useSelector(getRecommendedMedias);
-    const getTopRatedMedia = useSelector(getTopRatedMedias);
+    const getRecommendedMedia = useAppSelector(getRecommendedMedias);
+    const getTopRatedMedia = useAppSelector(getTopRatedMedias);
     const [isLoadingRecommended, setIsLoadingRecommended] = useState(true);
     const [isLoadingTopRated, setIsLoadingTopRated] = useState(true);
 

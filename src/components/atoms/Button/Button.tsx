@@ -1,13 +1,8 @@
-import React, {ButtonHTMLAttributes, FC, ReactChild, ReactNode} from 'react';
+import React, {ButtonHTMLAttributes, FC} from 'react';
 import styled, {css} from 'styled-components'
-
-//TODO: jak aplikacja sie wlaczy sprzedzic czy rest?: ReactNode jest tu potrzebny
-
 
 //interface AppProps extends React.ComponentPropsWithoutRef<'button'> {
 interface AppProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-    children: ReactChild,
-    rest?: ReactNode,
     secondary?: boolean,
     isBig?: boolean,
     isSmall?: boolean,

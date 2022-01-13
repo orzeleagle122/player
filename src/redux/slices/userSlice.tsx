@@ -124,7 +124,7 @@ export const errorLoginAction = () => async (dispatch: any) => {
     dispatch(errorLogin());
 }
 
-export const keepLoginAction = (refreshToken: string) => async (dispatch: any) => {
+export const keepLoginAction = (refreshToken: string | null) => async (dispatch: any) => {
     if (!refreshToken) {
         dispatch(setIsFetching(false));
         return;

@@ -2,13 +2,13 @@ import React from 'react';
 import ReactPlayer from 'react-player'
 import {Container} from "./VideoPlayer.elements";
 import useScrollPosition from "../../../hooks/useScrollPosition";
-import {useSelector} from "react-redux";
 import {getCurrentVideo, getErrorMessage} from "../../../redux/slices/movieSlice";
+import {useAppSelector} from "../../../store";
 
 const VideoPlayer = () => {
     const scrollPosition = useScrollPosition();
-    const currentVideo = useSelector(getCurrentVideo);
-    const errorMessage = useSelector(getErrorMessage);
+    const currentVideo = useAppSelector(getCurrentVideo);
+    const errorMessage = useAppSelector(getErrorMessage);
 
     return (
         <Container>

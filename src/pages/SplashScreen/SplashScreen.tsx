@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container} from "./SplashScreen.elements";
 
-
 const SplashScreen = () => {
     return (
         <Container>
