@@ -12,6 +12,7 @@ const VideoPlayer = () => {
 
     return (
         <Container>
+            asd
             <ReactPlayer
                 url={currentVideo.ContentUrl}
                 playing={true}
